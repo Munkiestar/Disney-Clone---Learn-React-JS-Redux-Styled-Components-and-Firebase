@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+React Slick - image slider
+<br/>
+[https://react-slick.neostack.com/docs/get-started/]
+
+
 ## Available Scripts
 
 In the project directory, you can run:
