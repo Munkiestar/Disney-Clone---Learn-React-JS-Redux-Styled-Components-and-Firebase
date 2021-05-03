@@ -3,12 +3,14 @@ import styled from "styled-components";
 
 import ImgSlider from "../Slider/ImgSlider";
 import Viewers from "../Viewers/Viewers";
+import Movies from "../Movies/Movies";
 
 function Home() {
   return (
     <Container>
       <ImgSlider />
       <Viewers />
+      <Movies />
     </Container>
   );
 }
