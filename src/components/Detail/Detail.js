@@ -1,51 +1,70 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import AddIcon from "@material-ui/icons/Add";
 import GroupIcon from "@material-ui/icons/Group";
 
-function Detail(props) {
+import { useParams } from "react-router-dom";
+import db from "../../firebase";
+
+import { useHistory } from "react-router-dom";
+
+function Detail() {
+  const { id } = useParams();
+  const [movie, setMovie] = useState();
+  const history = useHistory();
+
+  useEffect(() => {
+    // grab movie info from DB
+    db.collection("movies")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setMovie(doc.data());
+        } else {
+          // redirect to home page
+          history.push("/");
+        }
+      });
+  }, []);
+
+  console.log(movie);
+
   return (
     <Container>
-      <Background>
-        <img
-          src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg"
-          alt=""
-        />
-      </Background>
-      <ImgTitle>
-        <img
-          src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78"
-          alt=""
-        />
-      </ImgTitle>
-      <Controls>
-        <PlayButton>
-          <img src="./assets/images/play-icon-black.png" alt="" />
-          <span>Play</span>
-        </PlayButton>
-        <TrailerButton>
-          <img src="./assets/images/play-icon-white.png" alt="" />
-          <span>Trailer</span>
-        </TrailerButton>
-        <AddButton>
-          <AddIcon />
-        </AddButton>
-        <GroupWatchButton>
-          <GroupIcon />
-        </GroupWatchButton>
-      </Controls>
-      <Subtitle>
-        <span>2018 * 7m * Family, Fantasy, Kids, Animation</span>
-      </Subtitle>
-      <Description>
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-          debitis deserunt dolore laboriosam nulla optio perferendis reiciendis.
-          Amet animi assumenda dolores est ipsa labore, maxime officia repellat
-          sunt totam voluptatem?
-        </span>
-      </Description>
+      {movie && (
+        <>
+          <Background>
+            <img src={movie.backgroundImg} alt={movie.title} />
+          </Background>
+          <ImgTitle>
+            <img src={movie.titleImg} alt={movie.title} />
+          </ImgTitle>
+          <Controls>
+            <PlayButton>
+              <img src="./assets/images/play-icon-black.png" alt="" />
+              <span>Play</span>
+            </PlayButton>
+            <TrailerButton>
+              <img src="./assets/images/play-icon-white.png" alt="" />
+              <span>Trailer</span>
+            </TrailerButton>
+            <AddButton>
+              <AddIcon />
+            </AddButton>
+            <GroupWatchButton>
+              <GroupIcon />
+            </GroupWatchButton>
+          </Controls>
+          <Subtitle>
+            <span>{movie.subTitle}</span>
+          </Subtitle>
+          <Description>
+            <span>{movie.description}</span>
+          </Description>
+        </>
+      )}
     </Container>
   );
 }
@@ -91,6 +110,7 @@ const ImgTitle = styled.div`
 const Controls = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 30px;
 `;
 
 const PlayButton = styled.button`

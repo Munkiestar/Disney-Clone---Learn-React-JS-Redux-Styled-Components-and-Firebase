@@ -16,7 +16,6 @@ function Home() {
   useEffect(() => {
     db.collection("movies").onSnapshot((snapshot) => {
       let temMovies = snapshot.docs.map((doc) => {
-        // console.log(doc.data());
         return { id: doc.id, ...doc.data() };
       });
       dispatch(setMovies(temMovies));
