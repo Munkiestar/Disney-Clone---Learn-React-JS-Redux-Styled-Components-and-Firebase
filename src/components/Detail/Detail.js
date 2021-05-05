@@ -53,6 +53,7 @@ function Detail(props) {
 export default Detail;
 
 const Container = styled.div`
+  margin-top: 30px;
   min-height: calc(100vh - 70px);
   padding: 0 calc(3.5vw + 5px);
   position: relative;
@@ -75,6 +76,7 @@ const Background = styled.div`
 `;
 
 const ImgTitle = styled.div`
+  margin-top: 60px;
   height: 30vh;
   width: 35vw;
   min-height: 170px;
@@ -82,7 +84,6 @@ const ImgTitle = styled.div`
 
   img {
     height: 100%;
-    width: 100%;
     object-fit: contain;
   }
 `;

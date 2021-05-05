@@ -1,11 +1,17 @@
-# Getting Started with Create React App
+## Disney+ Clone - ReactJS Challenge (Learn Redux, React JS, Styled Components, and Firebase)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-React Slick - image slider
+### Technologies used:
+
+- React Slick - image slider
 <br/>
 [https://react-slick.neostack.com/docs/get-started/]
 
+- Material UI - for icons
+  
+<br/>
+<hr/>
+  This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
