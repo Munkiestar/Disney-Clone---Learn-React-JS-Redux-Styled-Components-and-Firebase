@@ -29,8 +29,6 @@ function Detail() {
       });
   }, []);
 
-  console.log(movie);
-
   return (
     <Container>
       {movie && (
